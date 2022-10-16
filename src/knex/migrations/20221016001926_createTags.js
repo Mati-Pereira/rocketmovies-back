@@ -3,13 +3,15 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  knex.schema.createTable("tags", (table) => {
+  return knex.schema.createTable("tags", (table) => {
     table.increments("id").primary();
+    table.integer("note_id").unsigned().notNullable();
     table
       .foreign("note_id")
       .references("id")
       .inTable("notes")
       .onDelete("CASCADE");
+    table.integer("user_id").unsigned().notNullable();
     table.foreign("user_id").references("id").inTable("notes");
     table.string("name").notNullable();
   });
@@ -20,5 +22,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  knex.schema.dropTableIfExists("tags");
+  return knex.schema.dropTableIfExists("tags");
 };

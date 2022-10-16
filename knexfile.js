@@ -10,12 +10,6 @@ module.exports = {
       filename: path.resolve(__dirname, "src", "knex", "database.db"),
     },
     useNullAsDefault: true,
-    pool: {
-      afterCreate: function (conn, done) {
-        conn.run("PRAGMA KEY = 'secret'");
-        done();
-      },
-    },
     migrations: {
       directory: path.resolve(__dirname, "src", "knex", "migrations"),
     },

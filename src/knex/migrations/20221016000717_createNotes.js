@@ -3,11 +3,12 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  knex.schema.createTable("notes", (table) => {
+  return knex.schema.createTable("notes", (table) => {
     table.increments("id").primary();
     table.string("title").notNullable();
     table.string("description").notNullable();
     table.integer("rating").notNullable;
+    table.integer("user_id").unsigned().notNullable();
     table
       .foreign("user_id")
       .references("id")
@@ -22,5 +23,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  knex.schema.dropTableIfExists("notes");
+  return knex.schema.dropTableIfExists("notes");
 };
