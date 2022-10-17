@@ -1,15 +1,11 @@
-const knex = require("../database/knex");
+import knex from "../knex";
 
 class TagsController {
-  async index(request, response) {
-    const user_id = request.user.id;
-
-    const tags = await knex("tags")
-      .where({ user_id })
-      .groupBy("name")
-
-    return response.json(tags);
+  async index(req, res) {
+    const user_id = req.user.id;
+    const tags = await knex("tags").where({ user_id }).groupBy("name");
+    return res.json(tags);
   }
 }
 
-module.exports = TagsController;
+export default new TagsController();
