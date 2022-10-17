@@ -23,7 +23,7 @@ app.use((error, req, res, next) => {
   } else {
     return res
       .status(500)
-      .json({ status: "error", message: "internal server error" });
+      .json({ status: "error", message: "Erro interno no servidor" });
   }
 });
 
