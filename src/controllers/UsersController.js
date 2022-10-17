@@ -1,7 +1,7 @@
 import knex from "../knex";
 import { hash } from "bcryptjs";
 
-class UserController {
+class UsersController {
   async create(req, res) {
     try {
       const { name, email, password } = req.body;
@@ -27,4 +27,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default new UsersController();
