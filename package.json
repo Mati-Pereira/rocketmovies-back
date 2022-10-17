@@ -4,10 +4,11 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server.js",
+    "prod": "node dist/server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
     "dev": "nodemon --exec sucrase-node ./src/server.js",
     "lint": "eslint --fix --ext .js src/",
-    "build": "sucrase ./src -d ./dist --transforms imports"
+    "migrate": "knex migrate:latest"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

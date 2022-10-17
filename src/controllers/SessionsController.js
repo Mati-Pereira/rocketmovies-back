@@ -1,4 +1,4 @@
-import knex from "../database/knex";
+import knex from "../knex";
 import { compare } from "bcryptjs";
 import AppError from "../utils/AppError";
 import { sign } from "jsonwebtoken";
