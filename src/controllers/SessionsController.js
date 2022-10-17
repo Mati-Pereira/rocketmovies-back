@@ -2,7 +2,7 @@ import knex from "../database/knex";
 import { compare } from "bcryptjs";
 import AppError from "../utils/AppError";
 import { sign } from "jsonwebtoken";
-import authConfig from "../configs/auth";
+import { jwt } from "../configs/auth";
 
 class SessionsController {
   async create(req, res) {
@@ -15,7 +15,7 @@ class SessionsController {
     if (!passwordMatched) {
       throw new AppError("E-mail e/ou senha incorreta.", 401);
     }
-    const { secret, expiresIn } = authConfig.jwt;
+    const { secret, expiresIn } = jwt;
     const token = sign({}, secret, {
       subject: String(user.id),
       expiresIn,
