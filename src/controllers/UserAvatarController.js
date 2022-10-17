@@ -31,4 +31,4 @@ class UserAvatarController {
   }
 }
 
-module.exports = UserAvatarController;
+export default new UserAvatarController();
