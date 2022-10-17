@@ -1,11 +1,12 @@
 {
   "name": "rocketmovies-back",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "server.js",
   "license": "MIT",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon --exec sucrase-node ./src/server.js"
+    "dev": "nodemon --exec sucrase-node ./src/server.js",
+    "lint": "eslint --fix --ext .js src/"  
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
