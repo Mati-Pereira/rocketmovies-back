@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon --exec sucrase-node ./src/server.js",
-    "lint": "eslint --fix --ext .js src/"  
+    "lint": "eslint --fix --ext .js src/",
+    "build": "sucrase ./src -d ./dist --transforms imports"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

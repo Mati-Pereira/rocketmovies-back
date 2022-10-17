@@ -1,9 +1,9 @@
 import "express-async-errors";
+import "dotenv/config";
 import express from "express";
 import routes from "./routes";
 import AppError from "./utils/AppError";
 import cors from "cors";
-import "dotenv/config";
 
 const app = express();
 const PORT = 3333;

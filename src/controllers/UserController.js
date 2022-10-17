@@ -1,5 +1,6 @@
-const knex = require("../knex");
-const { hash } = require("bcryptjs");
+import knex from "../knex";
+import { hash } from "bcryptjs";
+
 class UserController {
   async create(req, res) {
     try {
@@ -26,4 +27,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+export default new UserController();

@@ -1,7 +1,8 @@
-const knex = require("../knex");
+/* eslint-disable no-unused-vars */
+import knex from "../knex";
 
 class NotesController {
   async create(req, res) {}
 }
 
-module.exports = new NotesController();
+export default new NotesController();
