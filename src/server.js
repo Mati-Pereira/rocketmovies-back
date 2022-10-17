@@ -9,9 +9,8 @@ const app = express();
 const PORT = 3333;
 
 app.use(express.json());
-app.use(routes);
 app.use(cors());
-app.disable("x-powered-by");
+app.use(routes);
 
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
@@ -27,6 +26,6 @@ app.use((error, req, res, next) => {
   }
 });
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server Rodando na Porta: ${PORT}`);
 });

@@ -20,7 +20,6 @@ class SessionsController {
       subject: String(user.id),
       expiresIn,
     });
-
     res.status(201).json({ token, user });
   }
 }
