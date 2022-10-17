@@ -27,6 +27,6 @@ app.use((error, req, res, next) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`Server Rodando na Porta: ${PORT}`);
 });

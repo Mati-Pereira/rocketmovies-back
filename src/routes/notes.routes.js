@@ -1,10 +1,9 @@
 import { Router } from "express";
 
-import NotesController from "../controllers/NotesController";
+import notesController from "../controllers/NotesController";
 import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const notesRoutes = Router();
-const notesController = new NotesController();
 
 notesRoutes.use(ensureAuthenticated);
 
