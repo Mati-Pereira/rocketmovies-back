@@ -97,4 +97,4 @@ class NotesController {
   }
 }
 
-module.exports = NotesController;
+export default new NotesController();
