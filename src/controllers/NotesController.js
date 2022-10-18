@@ -2,23 +2,15 @@ import knex from "../knex";
 
 class NotesController {
   async create(req, res) {
-    const { title, description, tags, links } = req.body;
+    const { title, description, tags, rating } = req.body;
     const user_id = req.user.id;
 
     const note_id = await knex("notes").insert({
       title,
       description,
       user_id,
+      rating,
     });
-
-    const linksInsert = links.map((link) => {
-      return {
-        note_id,
-        url: link,
-      };
-    });
-
-    await knex("links").insert(linksInsert);
 
     const tagsInsert = tags.map((name) => {
       return {
@@ -30,7 +22,7 @@ class NotesController {
 
     await knex("tags").insert(tagsInsert);
 
-    return res.json();
+    return res.json({ user_id });
   }
 
   async show(req, res) {
