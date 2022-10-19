@@ -4,7 +4,7 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "prod": "node dist/server.js",
+    "production": "yarn build && node dist/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "dev": "nodemon --exec sucrase-node ./src/server.js",
     "lint": "eslint --fix --ext .js src/",
