@@ -66,6 +66,7 @@ class NotesController {
     } else {
       notes = await knex("notes")
         .where({ user_id })
+        .first()
         .whereLike("title", `%${title}%`)
         .orderBy("title");
     }
