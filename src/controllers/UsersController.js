@@ -5,7 +5,7 @@ import AppError from "../utils/AppError";
 class UsersController {
   async create(req, res) {
     const { name, email, password } = req.body;
-    const checkUserExists = await knex("users").where({ email });
+    const checkUserExists = await knex("users").where({ email }).first();
 
     if (checkUserExists) {
       throw new AppError("Este e-mail já está em uso.");
