@@ -28,7 +28,7 @@ class NotesController {
   async show(req, res) {
     const { id } = req.params;
 
-    const note = await knex("notes").where({ id });
+    const note = await knex("notes").where({ id }).first();
     const tags = await knex("tags").where({ note_id: id }).orderBy("name");
     return res.json({
       ...note,
@@ -66,8 +66,7 @@ class NotesController {
       notes = await knex("notes")
         .where({ user_id })
         .whereLike("title", `%${title}%`)
-        .orderBy("title")
-        .first();
+        .orderBy("title");
     }
 
     const userTags = await knex("tags").where({ user_id });
