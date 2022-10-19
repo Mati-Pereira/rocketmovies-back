@@ -4,23 +4,19 @@ import AppError from "../utils/AppError";
 
 class UsersController {
   async create(req, res) {
-    try {
-      const { name, email, password } = req.body;
-      const hashedPassword = await hash(password, 8);
-      const checkUserExists = await knex("users").where({ email });
+    const { name, email, password } = req.body;
+    const hashedPassword = await hash(password, 8);
+    const checkUserExists = await knex("users").where({ email });
 
-      if (checkUserExists) {
-        throw new AppError("Este e-mail já está em uso.");
-      }
-      await knex("users").insert({
-        name,
-        email,
-        password: hashedPassword,
-      });
-      return res.json({ name, email, password });
-    } catch (e) {
-      console.error(e.message);
+    if (checkUserExists) {
+      throw new AppError("Este e-mail já está em uso.");
     }
+    await knex("users").insert({
+      name,
+      email,
+      password: hashedPassword,
+    });
+    return res.json({ name, email, password });
   }
   async remove(req, res) {
     const { id } = req.params;
