@@ -7,10 +7,9 @@ class UsersController {
     try {
       const { name, email, password } = req.body;
       const hashedPassword = await hash(password, 8);
-      const user = await knex("users");
-      const userWithUpdatedEmail = await knex("users").where({ email });
-      if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
-        throw new AppError("Este e-mail já está em uso.");
+      const user = await knex("users").where({ email });
+      if (user) {
+        throw new AppError("Este usuário já está em uso", 401);
       }
       await knex("users").insert({
         name,
