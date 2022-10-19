@@ -1,6 +1,6 @@
 # Remove SQLite Database
 *.db
-
+.env.local
 # Logs
 logs
 *.log

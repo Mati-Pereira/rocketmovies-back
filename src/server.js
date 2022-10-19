@@ -12,6 +12,12 @@ app.use(express.json());
 app.use(cors());
 app.use(routes);
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "O server está rodando",
+  });
+});
+
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
   if (error instanceof AppError) {
@@ -26,6 +32,6 @@ app.use((error, req, res, next) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(Number(process.env.PORT), () => {
   console.log(`Server Rodando na Porta: ${PORT}`);
 });
