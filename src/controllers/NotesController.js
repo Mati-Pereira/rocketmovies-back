@@ -61,12 +61,14 @@ class NotesController {
         .whereIn("tags.name", filterTags)
         .innerJoin("notes", "notes.id", "tags.note_id")
         .groupBy("notes.id")
-        .orderBy("notes.title");
+        .orderBy("notes.title")
+        .first();
     } else {
       notes = await knex("notes")
         .where({ user_id })
         .whereLike("title", `%${title}%`)
-        .orderBy("title");
+        .orderBy("title")
+        .first();
     }
 
     const userTags = await knex("tags").where({ user_id });
