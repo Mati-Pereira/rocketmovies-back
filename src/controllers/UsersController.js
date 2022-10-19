@@ -5,12 +5,13 @@ import AppError from "../utils/AppError";
 class UsersController {
   async create(req, res) {
     const { name, email, password } = req.body;
-    const hashedPassword = await hash(password, 8);
     const checkUserExists = await knex("users").where({ email });
 
     if (checkUserExists) {
       throw new AppError("Este e-mail já está em uso.");
     }
+
+    const hashedPassword = await hash(password, 8);
     await knex("users").insert({
       name,
       email,
