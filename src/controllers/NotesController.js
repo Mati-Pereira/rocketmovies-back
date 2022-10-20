@@ -10,14 +10,17 @@ class NotesController {
       rating,
       user_id,
     });
-    const tagsOfThisNote = tags.map((tag) => {
-      return {
-        name: tag,
-        // note_id,
-        user_id,
-      };
-    });
-    await knex("tags").insert(tagsOfThisNote);
+    if (tags.length > 0) {
+      const tagsInsert = tags.map((name) => {
+        return {
+          note_id,
+          name,
+          user_id,
+        };
+      });
+
+      await knex("tags").insert(tagsInsert);
+    }
     return res.status(201).json({
       status: 201,
       message: "A nota foi cadastrada com sucesso.",
