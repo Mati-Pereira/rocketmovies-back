@@ -8,12 +8,7 @@ exports.up = function (knex) {
     table.string("title").notNullable();
     table.string("description").notNullable();
     table.integer("rating").notNullable;
-    table.integer("user_id").unsigned().notNullable();
-    table
-      .foreign("user_id")
-      .references("id")
-      .inTable("users")
-      .onDelete("CASCADE");
+    table.integer("user_id").references("id").inTable("users");
     table.timestamps(true, true);
   });
 };
