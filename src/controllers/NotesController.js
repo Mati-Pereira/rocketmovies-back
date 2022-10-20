@@ -13,7 +13,7 @@ class NotesController {
     const tagsOfThisNote = tags.map((tag) => {
       return {
         name: tag,
-        note_id,
+        // note_id,
         user_id,
       };
     });
