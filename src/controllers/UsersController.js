@@ -71,13 +71,17 @@ class UsersController {
         password: hashedNewPassword,
       });
     }
+    Date.prototype.reduceHours = function (h) {
+      this.setHours(this.getHours() - h);
+      return this;
+    };
     await knex("users")
       .where({ id: user_id })
       .update({
         name: user.name ?? name,
         email: user.email ?? email,
         password: user.password ?? password,
-        updated_at: new Date(),
+        updated_at: new Date().reduceHours(2),
       });
 
     return res.json({ user });

@@ -22,10 +22,17 @@ class UserAvatarController {
 
     const filename = await diskStorage.saveFile(avatarFilename);
 
-    await knex("users").where({ id: user_id }).update({
-      avatar: filename,
-      updated_at: new Date(),
-    });
+    Date.prototype.reduceHours = function (h) {
+      this.setHours(this.getHours() - h);
+      return this;
+    };
+
+    await knex("users")
+      .where({ id: user_id })
+      .update({
+        avatar: filename,
+        updated_at: new Date().reduceHours(2),
+      });
 
     return response.json(user);
   }
