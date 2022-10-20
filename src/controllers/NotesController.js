@@ -6,7 +6,7 @@ class NotesController {
 
     const user_id = req.user.id;
 
-    const note_id = await knex("notes").insert({
+    await knex("notes").insert({
       title,
       description,
       user_id,
@@ -16,7 +16,6 @@ class NotesController {
     if (tags.length > 0) {
       const tagsInsert = tags.map((name) => {
         return {
-          note_id,
           name,
           user_id,
         };
