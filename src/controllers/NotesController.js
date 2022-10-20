@@ -15,7 +15,8 @@ class NotesController {
     const tagsOfThisNote = tags.map((tag) => {
       const formattedTag = tag.trim();
       return {
-        note_id,
+        // note_id,
+        user_id,
         name: formattedTag,
       };
     });
