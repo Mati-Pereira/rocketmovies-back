@@ -1,5 +1,4 @@
 import knex from "../knex";
-import AppError from "../utils/AppError";
 
 class NotesController {
   async create(request, response) {
@@ -7,7 +6,7 @@ class NotesController {
     const { title, description, rating, tags } = request.body;
     const formattedTitle = title.trim();
     const formattedDescription = description.trim();
-    const note_id = await knex("notes").insert({
+    const note_id = await knex("notes").where({ user_id }).insert({
       title: formattedTitle,
       description: formattedDescription,
       rating,
