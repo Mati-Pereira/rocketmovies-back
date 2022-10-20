@@ -77,7 +77,9 @@ class UsersController {
         name: user.name ?? name,
         email: user.email ?? email,
         password: user.password ?? password,
-        updated_at: new Date(),
+        updated_at: new Date().toLocaleString("pt-BR", {
+          timeZone: "America/Sao_Paulo",
+        }),
       });
 
     return res.json({ user });
