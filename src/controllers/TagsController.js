@@ -9,12 +9,14 @@ class TagsController {
 
   async create(req, res) {
     const user_id = req.user.id;
+    const note_id = await knex("notes");
     const { tags } = req.body;
     if (tags.length > 0) {
       const tagsInsert = tags.map((name) => {
         return {
           name,
           user_id,
+          note_id,
         };
       });
       await knex("tags").insert(tagsInsert);
