@@ -12,15 +12,14 @@ class NotesController {
       rating,
       user_id,
     });
-    // const tagsOfThisNote = tags.map((tag) => {
-    //   const formattedTag = tag.trim();
-    //   return {
-    //     note_id,
-    //     user_id,
-    //     name: formattedTag,
-    //   };
-    // });
-    // await knex("tags").insert(tagsOfThisNote);
+    const tagsOfThisNote = tags.map((tag) => {
+      const formattedTag = tag.trim();
+      return {
+        note_id,
+        name: formattedTag,
+      };
+    });
+    await knex("tags").insert(tagsOfThisNote);
     return res.status(201).json({
       status: 201,
       message: "A nota foi cadastrada com sucesso.",
