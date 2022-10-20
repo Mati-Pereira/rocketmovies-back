@@ -4,13 +4,16 @@ class NotesController {
   async create(req, res) {
     const user_id = req.user.id;
     const { title, description, rating, tags } = req.body;
-    const note_id = await knex("notes").insert({
+
+    await knex("notes").insert({
       title,
       description,
       rating,
       user_id,
     });
+
     if (tags.length > 0) {
+      const note_id = await knex("notes.id");
       await knex("tags").insert(
         tags.map((name) => {
           return {
