@@ -1,8 +1,8 @@
 import knex from "../knex";
 
 class NotesController {
-  async create(req, res) {
-    const { title, description, tags, rating } = req.body;
+  async create(req, res, next) {
+    const { title, description, rating } = req.body;
 
     const user_id = req.user.id;
 
@@ -13,18 +13,7 @@ class NotesController {
       rating,
     });
 
-    if (tags.length > 0) {
-      const tagsInsert = tags.map((name) => {
-        return {
-          name,
-          user_id,
-        };
-      });
-
-      await knex("tags").insert(tagsInsert);
-    }
-
-    return res.json();
+    return next();
   }
 
   async show(req, res) {
