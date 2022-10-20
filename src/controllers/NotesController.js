@@ -1,28 +1,28 @@
 import knex from "../knex";
-import AppError from "../utils/AppError";
 
 class NotesController {
   async create(req, res) {
+    const user_id = req.user.id;
     const { title, description, rating, tags } = req.body;
-    const { user_id } = req.params;
-
-    const user = await knex("users").where({ id: user_id }).first();
-    if (!user) throw new AppError("Usuário invalido");
     const note_id = await knex("notes").insert({
       title,
       description,
       rating,
       user_id,
     });
-    const tagsInsert = tags.map((name) => {
+    const tagsOfThisNote = tags.map((tag) => {
+      const formattedTag = tag.trim();
       return {
         note_id,
         user_id,
-        name,
+        name: formattedTag,
       };
     });
-    await knex("tags").insert(tagsInsert);
-    return res.json();
+    await knex("tags").insert(tagsOfThisNote);
+    return res.status(201).json({
+      status: 201,
+      message: "A nota foi cadastrada com sucesso.",
+    });
   }
 
   async show(req, res) {
