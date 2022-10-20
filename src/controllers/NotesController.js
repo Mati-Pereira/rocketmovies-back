@@ -13,7 +13,7 @@ class NotesController {
     });
 
     if (tags.length > 0) {
-      const note_id = await knex("notes").select("id");
+      const note_id = await knex("notes");
       await knex("tags").insert(
         tags.map((name) => {
           return {
