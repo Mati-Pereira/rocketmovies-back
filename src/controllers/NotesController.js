@@ -11,15 +11,15 @@ class NotesController {
       user_id,
     });
     if (tags.length > 0) {
-      const tagsInsert = tags.map((name) => {
-        return {
-          note_id,
-          name,
-          user_id,
-        };
-      });
-
-      await knex("tags").insert(tagsInsert);
+      await knex("tags").insert(
+        tags.map((name) => {
+          return {
+            note_id,
+            name,
+            user_id,
+          };
+        })
+      );
     }
     return res.status(201).json({
       status: 201,
