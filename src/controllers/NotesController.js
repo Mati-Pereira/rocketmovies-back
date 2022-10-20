@@ -11,11 +11,10 @@ class NotesController {
       user_id,
     });
     const tagsOfThisNote = tags.map((tag) => {
-      const formattedTag = tag.trim();
       return {
+        name: tag,
         note_id,
         user_id,
-        name: formattedTag,
       };
     });
     await knex("tags").insert(tagsOfThisNote);
