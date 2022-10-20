@@ -72,13 +72,11 @@ class NotesController {
 
     const notesWithTags = notes.map((note) => {
       const noteTags = userTags.filter((tag) => tag.note_id === note.id);
-
       return {
         ...note,
         tags: noteTags,
       };
     });
-
     return res.json(notesWithTags);
   }
 }
