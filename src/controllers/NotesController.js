@@ -6,14 +6,12 @@ class NotesController {
     const { title, description, rating, tags } = req.body;
     const formattedTitle = title.trim();
     const formattedDescription = description.trim();
-    const note_id = await knex("notes")
-      .insert({
-        title: formattedTitle,
-        description: formattedDescription,
-        rating,
-        user_id,
-      })
-      .first();
+    const note_id = await knex("notes").insert({
+      title: formattedTitle,
+      description: formattedDescription,
+      rating,
+      user_id,
+    });
     const tagsOfThisNote = tags.map((tag) => {
       const formattedTag = tag.trim();
       return {
