@@ -16,7 +16,7 @@ class TagsController {
         return {
           name,
           user_id,
-          note_id,
+          note_id: note_id,
         };
       });
       await knex("tags").insert(tagsInsert);
