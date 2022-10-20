@@ -2,32 +2,30 @@ import knex from "../knex";
 import AppError from "../utils/AppError";
 
 class NotesController {
-  async create(req, res) {
-    const { title, description, tags, rating } = req.body;
-    const user_id = req.user.id;
-
-    if (rating < 0 || rating > 5) {
-      throw new AppError("A nota deve ser entre 0 e 5", 401);
-    }
-
+  async create(request, response) {
+    const user_id = request.user.id;
+    const { title, description, rating, tags } = request.body;
+    const formattedTitle = title.trim();
+    const formattedDescription = description.trim();
     const note_id = await knex("notes").insert({
-      title,
-      description,
-      user_id,
+      title: formattedTitle,
+      description: formattedDescription,
       rating,
+      user_id,
     });
-
-    const tagsInsert = tags.map((name) => {
+    const tagsOfThisNote = tags.map((tag) => {
+      const formattedTag = tag.trim();
       return {
         note_id,
-        name,
         user_id,
+        name: formattedTag,
       };
     });
-
-    await knex("tags").insert(tagsInsert);
-
-    return res.json();
+    await knex("tags").insert(tagsOfThisNote);
+    return response.status(201).json({
+      status: 201,
+      message: "A nota foi cadastrada com sucesso.",
+    });
   }
 
   async show(req, res) {
