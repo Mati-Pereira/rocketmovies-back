@@ -1,5 +1,6 @@
 import knex from "../knex";
 import AppError from "../utils/AppError";
+
 class NotesController {
   async create(req, res) {
     const { title, description, tags, rating } = req.body;
@@ -55,22 +56,22 @@ class NotesController {
 
     let notes;
 
-    if (tags) {
-      const filterTags = tags.split(",").map((tag) => tag);
-      notes = await knex("tags")
-        .select(["notes.id", "notes.title", "notes.user_id"])
-        .where("notes.user_id", user_id)
-        .whereLike("title", `%${title}%`)
-        .whereIn("tags.name", filterTags)
-        .innerJoin("notes", "notes.id", "tags.note_id")
-        .groupBy("notes.id")
-        .orderBy("notes.title");
-    } else {
-      notes = await knex("notes")
-        .where({ user_id })
-        .whereLike("title", `%${title}%`)
-        .orderBy("title");
-    }
+    // if (tags) {
+    //   const filterTags = tags.split(",").map((tag) => tag);
+    //   notes = await knex("tags")
+    //     .select(["notes.id", "notes.title", "notes.user_id"])
+    //     .where("notes.user_id", user_id)
+    //     .whereLike("title", `%${title}%`)
+    //     .whereIn("tags.name", filterTags)
+    //     .innerJoin("notes", "notes.id", "tags.note_id")
+    //     .groupBy("notes.id")
+    //     .orderBy("notes.title");
+    // } else {
+    notes = await knex("notes")
+      .where({ user_id })
+      .whereLike("title", `%${title}%`)
+      .orderBy("title");
+    // }
 
     const userTags = await knex("tags").where({ user_id });
 
