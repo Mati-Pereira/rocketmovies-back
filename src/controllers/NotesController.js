@@ -8,7 +8,7 @@ class NotesController {
 
     const user = await knex("users").where({ id: user_id }).first();
     if (!user) throw new AppError("Usuário invalido");
-    const note_id = await knex("movie_notes").insert({
+    const note_id = await knex("notes").insert({
       title,
       description,
       rating,
@@ -21,7 +21,7 @@ class NotesController {
         name,
       };
     });
-    await knex("movie_tags").insert(tagsInsert);
+    await knex("tags").insert(tagsInsert);
     return res.json();
   }
 
