@@ -10,7 +10,7 @@ exports.up = function (knex) {
       .references("id")
       .inTable("notes")
       .onDelete("CASCADE");
-    table.integer("user_id").references("id").inTable("notes");
+    table.integer("user_id").references("id").inTable("users");
     table.text("name").notNullable();
   });
 };
