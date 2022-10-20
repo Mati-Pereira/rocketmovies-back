@@ -2,28 +2,30 @@ import knex from "../knex";
 
 class NotesController {
   async create(req, res) {
-    const user_id = req.user.id;
-    const { title, description, rating, tags } = req.body;
+    const { title, description, tags, rating } = req.body;
 
-    await knex("notes").insert({
+    const user_id = req.user.id;
+
+    const note_id = await knex("notes").insert({
       title,
       description,
-      rating,
       user_id,
+      rating,
     });
 
     if (tags.length > 0) {
-      const note_id = await knex("notes");
-      await knex("tags").insert(
-        tags.map((name) => {
-          note_id, name, user_id;
-        })
-      );
+      const tagsInsert = tags.map((name) => {
+        return {
+          note_id,
+          name,
+          user_id,
+        };
+      });
+
+      await knex("tags").insert(tagsInsert);
     }
-    return res.status(201).json({
-      status: 201,
-      message: "A nota foi cadastrada com sucesso.",
-    });
+
+    return res.json();
   }
 
   async show(req, res) {
