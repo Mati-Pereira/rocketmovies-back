@@ -1,9 +1,13 @@
 import knex from "../knex";
-
+import AppError from "../utils/AppError";
 class NotesController {
   async create(req, res) {
     const { title, description, tags, rating } = req.body;
     const user_id = req.user.id;
+
+    if (rating < 0 || rating > 5) {
+      throw new AppError("A nota deve ser entre 0 e 5", 401);
+    }
 
     const note_id = await knex("notes").insert({
       title,
