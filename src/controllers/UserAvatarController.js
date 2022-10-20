@@ -22,14 +22,10 @@ class UserAvatarController {
 
     const filename = await diskStorage.saveFile(avatarFilename);
 
-    await knex("users")
-      .where({ id: user_id })
-      .update({
-        avatar: filename,
-        updated_at: new Date().toLocaleString("pt-BR", {
-          timeZone: "America/Sao_Paulo",
-        }),
-      });
+    await knex("users").where({ id: user_id }).update({
+      avatar: filename,
+      updated_at: new Date(),
+    });
 
     return response.json(user);
   }
