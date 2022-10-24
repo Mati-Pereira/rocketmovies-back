@@ -9,6 +9,7 @@
     "dev": "nodemon --exec sucrase-node ./src/server.js",
     "lint": "eslint --fix --ext .js src/",
     "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback --all",
     "test": "jest"
   },
   "dependencies": {
