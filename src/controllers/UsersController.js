@@ -1,24 +1,18 @@
 import knex from "../knex";
 import { hash, compare } from "bcryptjs";
 import AppError from "../utils/AppError";
+import userRepository from "../repositories/UserRepository";
 
 class UsersController {
   async create(req, res) {
     const { name, email, password } = req.body;
-
-    const checkUserExists = await knex("users").where({ email }).first();
-
+    const checkUserExists = await userRepository.findByEmail(email);
     if (checkUserExists) {
       throw new AppError("Este e-mail já está em uso.");
     }
-
     const hashedPassword = await hash(password, 8);
-    await knex("users").insert({
-      name,
-      email,
-      password: hashedPassword,
-    });
-    return res.json({ name, email, password });
+    await userRepository.create({ name, email, password: hashedPassword });
+    return res.status(201).json();
   }
   async remove(req, res) {
     const { id } = req.params;
