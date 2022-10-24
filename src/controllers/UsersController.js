@@ -1,12 +1,14 @@
 import knex from "../knex";
 import { hash, compare } from "bcryptjs";
 import AppError from "../utils/AppError";
-import userCreateService from "../services/UserCreateService";
+import UserCreateService from "../services/UserCreateService";
+import userRepository from "../repositories/UserRepository";
 
 class UsersController {
   async create(req, res) {
     const { name, email, password } = req.body;
-
+    const userCreateService = new UserCreateService(userRepository);
+    await userCreateService.execute({ name, email, password });
     return res.status(201).json();
   }
   async remove(req, res) {
