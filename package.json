@@ -25,6 +25,7 @@
     "sqlite3": "^5.1.2"
   },
   "devDependencies": {
+    "@sucrase/jest-plugin": "^3.0.0",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
