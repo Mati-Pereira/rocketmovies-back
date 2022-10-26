@@ -7,6 +7,7 @@
     "start": "node dist/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "dev": "nodemon --exec sucrase-node ./src/server.js",
+    "prod": "yarn build && yarn start",
     "lint": "eslint --fix --ext .js src/",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback --all",
