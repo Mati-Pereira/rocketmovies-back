@@ -4,7 +4,7 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node src/server.js",
     "dev": "nodemon ./src/server.js",
     "lint": "eslint --fix --ext .js src/",
     "migrate": "knex migrate:latest",

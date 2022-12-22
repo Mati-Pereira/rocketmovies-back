@@ -5,4 +5,4 @@ class AppError {
   }
 }
 
-export default AppError;
+module.exports = AppError;

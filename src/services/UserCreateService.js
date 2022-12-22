@@ -1,5 +1,5 @@
-import AppError from "../utils/AppError";
-import { hash } from "bcryptjs";
+const AppError = require("../utils/AppError");
+const { hash } = require("bcryptjs");
 
 class UserCreateService {
   constructor(userRepository) {
@@ -20,4 +20,4 @@ class UserCreateService {
   }
 }
 
-export default UserCreateService;
+module.exports = UserCreateService;

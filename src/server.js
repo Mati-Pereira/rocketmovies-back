@@ -1,9 +1,9 @@
-import "express-async-errors";
-import "dotenv/config";
-import express from "express";
-import routes from "./routes";
-import AppError from "./utils/AppError";
-import cors from "cors";
+require("express-async-errors");
+require("dotenv/config");
+const express = require("express");
+const routes = require("./routes");
+const AppError = require("./utils/AppError");
+const cors = require("cors");
 
 const app = express();
 
@@ -32,5 +32,5 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(3333, () => {
-  console.log(`Server Rodando na Porta: ${PORT}`);
+  console.log(`Server Rodando na Porta: 3333`);
 });
