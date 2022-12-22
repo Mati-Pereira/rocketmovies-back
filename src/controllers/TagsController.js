@@ -1,4 +1,4 @@
-import knex from "../knex";
+const knex = require("../knex");
 
 class TagsController {
   async index(req, res) {
@@ -8,4 +8,4 @@ class TagsController {
   }
 }
 
-export default new TagsController();
+module.exports = new TagsController();

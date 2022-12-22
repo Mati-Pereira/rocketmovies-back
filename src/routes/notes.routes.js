@@ -1,8 +1,8 @@
-import { Router } from "express";
+const { Router } = require("express");
 
-import notesController from "../controllers/NotesController";
-import tagsController from "../controllers/TagsController";
-import ensureAuthenticated from "../middlewares/ensureAuthenticated";
+const notesController = require("../controllers/NotesController");
+const tagsController = require("../controllers/TagsController");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
 const notesRoutes = Router();
 
@@ -13,4 +13,4 @@ notesRoutes.get("/:id", notesController.show);
 notesRoutes.delete("/:id", notesController.delete);
 notesRoutes.get("/", notesController.index);
 
-export default notesRoutes;
+module.exports = notesRoutes;

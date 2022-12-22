@@ -1,6 +1,6 @@
-import DiskStorage from "../providers/DiskStorage";
-import knex from "../knex";
-import AppError from "../utils/AppError";
+const DiskStorage = require("../providers/DiskStorage");
+const knex = require("../knex");
+const AppError = require("../utils/AppError");
 
 class UserAvatarController {
   async update(request, response) {
@@ -32,4 +32,4 @@ class UserAvatarController {
   }
 }
 
-export default new UserAvatarController();
+module.exports = new UserAvatarController();

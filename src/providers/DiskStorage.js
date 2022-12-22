@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import { TMP_FOLDER, UPLOADS_FOLDER } from "../configs/upload";
+const fs = require("fs");
+const path = require("path");
+const { TMP_FOLDER, UPLOADS_FOLDER } = require("../configs/upload");
 
 class DiskStorage {
   async saveFile(file) {
@@ -22,4 +22,4 @@ class DiskStorage {
   }
 }
 
-export default DiskStorage;
+module.exports = DiskStorage;

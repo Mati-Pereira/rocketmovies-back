@@ -1,6 +1,6 @@
-import multer from "multer";
-import crypto from "crypto";
-import path from "path";
+const multer = require("multer");
+const crypto = require("crypto");
+const path = require("path");
 
 const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp");
 const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, "uploads");
@@ -17,4 +17,4 @@ const MULTER = {
   }),
 };
 
-export { TMP_FOLDER, UPLOADS_FOLDER, MULTER };
+module.exports = { TMP_FOLDER, UPLOADS_FOLDER, MULTER };

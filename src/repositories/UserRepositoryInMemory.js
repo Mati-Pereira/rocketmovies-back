@@ -18,4 +18,4 @@ class UserRepositoryInMemory {
   }
 }
 
-export default new UserRepositoryInMemory();
+module.exports = new UserRepositoryInMemory();

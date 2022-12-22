@@ -1,6 +1,6 @@
-import { verify } from "jsonwebtoken";
-import AppError from "../utils/AppError";
-import { jwt } from "../configs/auth";
+const { verify } = require("jsonwebtoken");
+const AppError = require("../utils/AppError");
+const { jwt } = require("../configs/auth");
 
 function ensureAuthenticated(req, response, next) {
   const authHeader = req.headers.authorization;
@@ -19,4 +19,4 @@ function ensureAuthenticated(req, response, next) {
   }
 }
 
-export default ensureAuthenticated;
+module.exports = ensureAuthenticated;

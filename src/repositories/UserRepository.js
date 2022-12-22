@@ -1,4 +1,4 @@
-import knex from "../knex";
+const knex = require("../knex");
 
 class UserRepository {
   async findByEmail(email) {
@@ -15,4 +15,4 @@ class UserRepository {
   }
 }
 
-export default new UserRepository();
+module.exports = new UserRepository();

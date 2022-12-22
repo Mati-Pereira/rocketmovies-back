@@ -1,8 +1,8 @@
-import knex from "../knex";
-import { hash, compare } from "bcryptjs";
-import AppError from "../utils/AppError";
-import UserCreateService from "../services/UserCreateService";
-import userRepository from "../repositories/UserRepository";
+const knex = require("../knex");
+const { hash, compare } = require("bcryptjs");
+const AppError = require("../utils/AppError");
+const UserCreateService = require("../services/UserCreateService");
+const userRepository = require("../repositories/UserRepository");
 
 class UsersController {
   async create(req, res) {
@@ -79,4 +79,4 @@ class UsersController {
   }
 }
 
-export default new UsersController();
+module.exports = new UsersController();

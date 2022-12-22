@@ -1,8 +1,8 @@
-import knex from "../knex";
-import AppError from "../utils/AppError";
-import { compare } from "bcryptjs";
-import { sign } from "jsonwebtoken";
-import { jwt } from "../configs/auth";
+const knex = require("../knex");
+const AppError = require("../utils/AppError");
+const { compare } = require("bcryptjs");
+const { sign } = require("jsonwebtoken");
+const { jwt } = require("../configs/auth");
 
 class SessionsController {
   async create(req, res) {
@@ -24,4 +24,4 @@ class SessionsController {
   }
 }
 
-export default new SessionsController();
+module.exports = new SessionsController();
