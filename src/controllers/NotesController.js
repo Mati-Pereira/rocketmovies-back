@@ -1,26 +1,30 @@
 import knex from "../knex";
 
 class NotesController {
-  async create(req, res, next) {
+  async create(req, res) {
     const { title, description, rating } = req.body;
-
     const user_id = req.user.id;
-
-    await knex("notes").insert({
+    const note_id = await knex("notes").insert({
       title,
       description,
       user_id,
       rating,
     });
-
-    return next();
+    const tagsInsert = tags.map((name) => {
+      return {
+        note_id,
+        name,
+        user_id,
+      };
+    });
+    await knex("tags").insert(tagsInsert);
+    return res.status(201).json(note_id);
   }
 
   async show(req, res) {
     const { id } = req.params;
-
     const note = await knex("notes").where({ id }).first();
-    const tags = await knex("tags").where({ user_id: id }).orderBy("name");
+    const tags = await knex("tags").where({ note_id: id }).orderBy("name");
     return res.json({
       ...note,
       tags,
@@ -29,17 +33,13 @@ class NotesController {
 
   async delete(req, res) {
     const { id } = req.params;
-
     await knex("notes").where({ id }).delete();
-
-    return res.json();
+    return res.json({ message: "Nota deletada com sucesso" });
   }
 
   async index(req, res) {
     const { title, tags } = req.query;
-
     const user_id = req.user.id;
-
     let notes;
 
     if (tags) {

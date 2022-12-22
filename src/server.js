@@ -6,10 +6,9 @@ import AppError from "./utils/AppError";
 import cors from "cors";
 
 const app = express();
-const PORT = 3333;
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(routes);
 
 app.get("/", (req, res) => {
@@ -32,6 +31,6 @@ app.use((error, req, res, next) => {
   }
 });
 
-app.listen(Number(process.env.PORT), () => {
+app.listen(3333, () => {
   console.log(`Server Rodando na Porta: ${PORT}`);
 });

@@ -30,7 +30,7 @@ class UsersController {
       throw new AppError("Usuário não encontrado");
     }
 
-    const userWithUpdatedEmail = await knex("users").where({ email });
+    const userWithUpdatedEmail = await knex("users").where({ email }).first();
 
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
       throw new AppError("Este e-mail já está em uso.");

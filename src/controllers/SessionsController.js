@@ -1,6 +1,6 @@
 import knex from "../knex";
-import { compare } from "bcryptjs";
 import AppError from "../utils/AppError";
+import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { jwt } from "../configs/auth";
 

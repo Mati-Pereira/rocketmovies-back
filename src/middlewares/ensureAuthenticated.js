@@ -7,7 +7,7 @@ function ensureAuthenticated(req, response, next) {
   if (!authHeader) {
     throw new AppError("JWT token não informado", 401);
   }
-  const [, token] = authHeader.split(" ");
+  const [_, token] = authHeader.split(" ");
   try {
     const { sub: user_id } = verify(token, jwt.secret);
     req.user = {
