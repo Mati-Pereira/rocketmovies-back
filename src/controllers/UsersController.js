@@ -1,8 +1,6 @@
 const knex = require("../knex");
 const { hash, compare } = require("bcryptjs");
 const AppError = require("../utils/AppError");
-const UserCreateService = require("../services/UserCreateService");
-const userRepository = require("../repositories/UserRepository");
 
 class UsersController {
   async create(req, res) {
