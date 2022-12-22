@@ -7,19 +7,19 @@ const userRepository = require("../repositories/UserRepository");
 class UsersController {
   async create(req, res) {
     const { name, email, password } = req.body;
-    const userCreateService = new UserCreateService(userRepository);
-    await userCreateService.execute({ name, email, password });
-    return res.status(201).json();
-  }
-  async remove(req, res) {
-    const { id } = req.params;
-    try {
-      await knex("users").where({ id }).delete();
-      res.json({ id });
-    } catch (error) {
-      console.error(error.message);
+    const checkUserExists = await knex("users").where({ email }).first();
+    if (checkUserExists) {
+      throw new AppError("Este e-mail a esta em uso");
     }
+    const hashedPassword = await hash(password, 8);
+    await knex("users").insert({
+      name,
+      email,
+      password: hashedPassword,
+    });
+    return res.status(201).json({ message: "Usuário criado com sucesso" });
   }
+
   async update(req, res) {
     const { name, email, password, old_password } = req.body;
     const user_id = req.user.id;
